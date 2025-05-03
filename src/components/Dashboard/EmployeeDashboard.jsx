@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../other/header';
 import TaskListNumber from '../other/tasklistnumber';
-
+import TaskList from '../TaskList/TaskList';
 const EmployeeDashboard = () => {
   return (
     <>
@@ -12,6 +12,8 @@ const EmployeeDashboard = () => {
         <TaskListNumber count={8} label="Accepted" color="from-green-400 to-green-600" borderColor="border-green-300 dark:border-green-700" />
         <TaskListNumber count={1} label="Failed" color="from-pink-500 to-pink-700" borderColor="border-pink-300 dark:border-pink-700" />
       </div>
+
+      <TaskList />
     </>
   );
 };
