@@ -1,9 +1,15 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: auto;
   padding: 2rem;
   text-align: center;
 }
+
+body {
+  background-color: #1e1e1e; /* lighter shade of black */
+  color: #ffffff; /* optional: make text readable */
+}
+
 
 .logo {
   height: 6em;
