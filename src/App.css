@@ -46,3 +46,12 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.scroll-container {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;      /* Firefox */
+}

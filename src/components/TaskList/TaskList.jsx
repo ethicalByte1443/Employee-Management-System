@@ -23,6 +23,20 @@ const TaskList = () => {
       priority: 'Low',
       dueDate: '2025-05-10',
     },
+    {
+      id: 4,
+      title: 'Update API Docs',
+      description: 'Revise and update the API documentation.',
+      priority: 'Medium',
+      dueDate: '2025-05-06',
+    },
+    {
+      id: 5,
+      title: 'Deploy Backend',
+      description: 'Deploy backend services to production.',
+      priority: 'High',
+      dueDate: '2025-05-07',
+    },
   ];
 
   const getPriorityColor = (priority) => {
@@ -41,30 +55,37 @@ const TaskList = () => {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">📝 Task List</h2>
-      <div className="space-y-4">
-        {tasks.map((task) => (
-          <div
-            key={task.id}
-            className="p-5 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700"
-          >
-            <div className="flex justify-between items-center mb-2">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                {task.title}
-              </h3>
-              <span
-                className={`text-sm text-white px-3 py-1 rounded-full font-medium ${getPriorityColor(
-                  task.priority
-                )}`}
-              >
-                {task.priority}
-              </span>
+      <div className="overflow-x-auto">
+        <div className="flex gap-4 pb-4 min-w-full">
+          {tasks.map((task) => (
+            <div
+              key={task.id}
+              className="min-w-[300px] max-w-[300px] h-[230px] flex flex-col justify-between p-5 bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700"
+            >
+              {/* Header: Title and Priority */}
+              <div className="flex justify-between items-start">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{task.title}</h3>
+                <span
+                  className={`text-xs text-white px-2 py-0.5 rounded-full font-medium ${getPriorityColor(
+                    task.priority
+                  )}`}
+                >
+                  {task.priority}
+                </span>
+              </div>
+
+              {/* Centered Description */}
+              <div className="flex-1 flex items-center justify-center text-center px-2">
+                <p className="text-gray-700 dark:text-gray-300 text-sm">{task.description}</p>
+              </div>
+
+              {/* Footer: Due Date */}
+              <div className="text-right">
+                <p className="text-xs text-gray-500 dark:text-gray-400">📅 Due: {task.dueDate}</p>
+              </div>
             </div>
-            <p className="text-gray-700 dark:text-gray-300">{task.description}</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-              📅 Due: {task.dueDate}
-            </p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
