@@ -2,29 +2,39 @@ import React from "react";
 import Header from "../other/header";
 import TaskListNumber from "../other/tasklistnumber";
 import TaskList from "../TaskList/TaskList";
+
 const EmployeeDashboard = () => {
   return (
     <>
       <Header username={"Aseem"} />
+      
       <div className="flex flex-wrap justify-center gap-6 px-6">
-        <TaskListNumber count={5} label="New Tasks" />
+        <TaskListNumber
+          count={5}
+          label="New Tasks"
+          color="from-blue-500 to-indigo-600"
+          borderColor="border-blue-300 dark:border-indigo-600"
+        />
+        
         <TaskListNumber
           count={2}
           label="Completed"
-          color="from-yellow-400 to-yellow-600"
-          borderColor="border-yellow-300 dark:border-yellow-700"
+          color="from-indigo-500 to-purple-600"
+          borderColor="border-indigo-400 dark:border-purple-600"
         />
+        
         <TaskListNumber
           count={8}
           label="Accepted"
-          color="from-green-400 to-green-600"
-          borderColor="border-green-300 dark:border-green-700"
+          color="from-cyan-500 to-blue-600"
+          borderColor="border-cyan-400 dark:border-blue-600"
         />
+        
         <TaskListNumber
           count={1}
           label="Failed"
-          color="from-pink-500 to-pink-700"
-          borderColor="border-pink-300 dark:border-pink-700"
+          color="from-rose-500 to-pink-600"
+          borderColor="border-rose-400 dark:border-pink-600"
         />
       </div>
 
