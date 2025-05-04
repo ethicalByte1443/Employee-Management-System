@@ -1,20 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Login = () => {
+const Login = ({handleLogin}) => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
     const submithandler = (e) => {
         e.preventDefault();
+        handleLogin(email, password);
         console.log(email, password);
         console.log("Submit handler called");
     }
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex items-center justify-center min-h-screen  ">
       <div className="w-full max-w-sm p-8 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-300 dark:border-gray-700">
         <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Login</h2>
         <form 

@@ -3,10 +3,10 @@ import Header from "../other/header";
 import TaskListNumber from "../other/tasklistnumber";
 import TaskList from "../TaskList/TaskList";
 
-const EmployeeDashboard = () => {
+const EmployeeDashboard = ({ EmpName }) => {
   return (
     <>
-      <Header username={"Aseem"} />
+      <Header username={EmpName} />
       
       <div className="flex flex-wrap justify-center gap-6 px-6">
         <TaskListNumber

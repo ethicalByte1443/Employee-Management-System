@@ -1,0 +1,225 @@
+const employee = [
+    {
+        id: 1,
+        naam: "Aarav Sharma",
+        email: "employee1@example.com",
+        password: "123",
+        tasks: [
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "Prepare Monthly Report",
+                description: "Compile and submit the monthly sales report.",
+                date: "2025-05-01",
+                category: "Reporting",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: true,
+                failed: false,
+                title: "Client Follow-up",
+                description: "Email clients regarding project updates.",
+                date: "2025-04-20",
+                category: "Communication",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "Server Maintenance",
+                description: "Scheduled maintenance missed deadline.",
+                date: "2025-04-15",
+                category: "IT Operations",
+            },
+        ],
+    },
+    {
+        id: 2,
+        naam: "Ishita Verma",
+        email: "employee2@example.com",
+        password: "123",
+        tasks: [
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "UI Redesign",
+                description: "Redesign the dashboard interface.",
+                date: "2025-05-03",
+                category: "Design",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: true,
+                failed: false,
+                title: "Team Meeting",
+                description: "Conduct weekly scrum meeting.",
+                date: "2025-04-30",
+                category: "Management",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: true,
+                failed: false,
+                title: "Database Cleanup",
+                description: "Remove outdated records.",
+                date: "2025-04-28",
+                category: "Database",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "API Debugging",
+                description: "Fix critical bug in payment API.",
+                date: "2025-04-25",
+                category: "Development",
+            },
+        ],
+    },
+    {
+        id: 3,
+        naam: "Rohan Gupta",
+        email: "employee3@example.com",
+        password: "123",
+        tasks: [
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "Inventory Audit",
+                description: "Verify all stock items in warehouse.",
+                date: "2025-05-04",
+                category: "Logistics",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: true,
+                failed: false,
+                title: "Vendor Coordination",
+                description: "Coordinate with vendors for deliveries.",
+                date: "2025-04-22",
+                category: "Supply Chain",
+            },
+        ],
+    },
+    {
+        id: 4,
+        naam: "Ananya Singh",
+        email: "employee4@example.com",
+        password: "123",
+        tasks: [
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "User Testing",
+                description: "Conduct A/B tests on new features.",
+                date: "2025-05-02",
+                category: "QA",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "Compliance Update",
+                description: "Update system with latest compliance standards.",
+                date: "2025-04-18",
+                category: "Legal",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: true,
+                failed: false,
+                title: "System Backup",
+                description: "Create a full backup of servers.",
+                date: "2025-04-27",
+                category: "IT Operations",
+            },
+        ],
+    },
+    {
+        id: 5,
+        naam: "Priya Nair",
+        email: "employee5@example.com",
+        password: "123",
+        tasks: [
+            {
+                active: true,
+                newTask: false,
+                completed: false,
+                failed: false,
+                title: "Blog Post Writing",
+                description: "Write blog post on new product feature.",
+                date: "2025-05-03",
+                category: "Marketing",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: true,
+                failed: false,
+                title: "Newsletter Design",
+                description: "Design monthly email newsletter.",
+                date: "2025-04-21",
+                category: "Design",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "Campaign Analytics",
+                description: "Analyze performance of last campaign.",
+                date: "2025-04-19",
+                category: "Analytics",
+            },
+            {
+                active: false,
+                newTask: false,
+                completed: true,
+                failed: false,
+                title: "Social Media Planning",
+                description: "Plan content for upcoming week.",
+                date: "2025-04-24",
+                category: "Marketing",
+            },
+        ],
+    },
+];
+
+const admin = [
+    {
+        id: 1,
+        naam: "Aseem Pradhan",
+        email: "admin@example.com",
+        password: "123",
+    },
+];
+
+
+
+
+export const setLocalStorage = () => {
+    localStorage.setItem('employee', JSON.stringify(employee));
+    localStorage.setItem('admin', JSON.stringify(admin));
+}
+export const getLocalStorage = () => {
+    const employee = JSON.parse(localStorage.getItem('employee')) 
+    const admin = JSON.parse(localStorage.getItem('admin')) 
+    return {employee, admin}
+}
+
