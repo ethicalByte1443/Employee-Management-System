@@ -1,11 +1,11 @@
 import React from "react";
 import AdminHeader from "./AdminHeader";
 
-const AdminWelcomePage = ({ AdminName }) => {
+const AdminWelcomePage = ({ loggedIn }) => {
   return (
     <>
       {/* Header Section */}
-      <AdminHeader username={AdminName} />
+      <AdminHeader username={loggedIn.naam} />
 
       {/* Compact, Centered Welcome Section */}
       <div className="min-h-[80vh] flex items-center justify-center px-4 py-10  text-white">
@@ -22,7 +22,7 @@ const AdminWelcomePage = ({ AdminName }) => {
           {/* Text + Column Buttons */}
           <div className="flex-1 w-full text-center lg:text-left">
             <h1 className="text-4xl font-extrabold mb-2 text-blue-400">
-              👨‍💼 Welcome, Admin
+              👨‍💼 Welcome, {loggedIn.naam}
             </h1>
             <p className="text-gray-300 text-lg mb-6">
               Manage employee tasks, monitor progress, and ensure smooth

@@ -18,6 +18,7 @@ const App = () => {
   const [user, setUser] = React.useState(null)
   const [empName, setEmpName] = React.useState()
   const [adminName, setAdminName] = React.useState()
+  const [loggedIn, setLoggedIn] = React.useState(null)
   
   const AuthData = useContext(AuthContext)
 
@@ -32,23 +33,25 @@ const App = () => {
       console.log(admin.naam); // This works reliably
       setAdminName(admin.naam)
       setUser('admin')
-      
-
+      setLoggedIn(admin)
     } else if (AuthData && AuthData.employee.find((user) => user.email === email && user.password === password)) {
       const employee = AuthData.employee.find((user) => user.email === email && user.password === password)
       setUser('employee')
       setEmpName(employee.naam)
+      setLoggedIn(employee)
     }
     else {
       alert('Invalid credentials')
     }
   }
 
+  console.log(loggedIn);
+
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ''}
 
-      {user === 'admin' ? <AdminWelcomePage AdminName={adminName}/> : user === 'employee' ? <EmployeeDashboard EmpName={empName} /> : null}
+      {user === 'admin' ? <AdminWelcomePage loggedIn={loggedIn}/> : user === 'employee' ? <EmployeeDashboard loggedIn={loggedIn} /> : null}
 
       {/* <EmployeeDashboard /> */}
 
