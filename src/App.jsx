@@ -53,9 +53,6 @@ const App = () => {
 
       {user === 'admin' ? <AdminWelcomePage loggedIn={loggedIn}/> : user === 'employee' ? <EmployeeDashboard loggedIn={loggedIn} /> : null}
 
-      {/* <EmployeeDashboard /> */}
-
-      {/* <AdminDashboard /> */}
 
       {/* <AllTask /> */}
 

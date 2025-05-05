@@ -14,6 +14,7 @@ const employee = [
                 description: "Compile and submit the monthly sales report.",
                 date: "2025-05-01",
                 category: "Reporting",
+                priority: "high",
             },
             {
                 active: false,
@@ -24,6 +25,7 @@ const employee = [
                 description: "Email clients regarding project updates.",
                 date: "2025-04-20",
                 category: "Communication",
+                priority: "medium",
             },
             {
                 active: false,
@@ -34,6 +36,7 @@ const employee = [
                 description: "Scheduled maintenance missed deadline.",
                 date: "2025-04-15",
                 category: "IT Operations",
+                priority: "low",
             },
         ],
     },
@@ -52,6 +55,7 @@ const employee = [
                 description: "Redesign the dashboard interface.",
                 date: "2025-05-03",
                 category: "Design",
+                priority: "high",
             },
             {
                 active: false,
@@ -62,6 +66,7 @@ const employee = [
                 description: "Conduct weekly scrum meeting.",
                 date: "2025-04-30",
                 category: "Management",
+                priority: "medium",
             },
             {
                 active: false,
@@ -72,6 +77,7 @@ const employee = [
                 description: "Remove outdated records.",
                 date: "2025-04-28",
                 category: "Database",
+                priority: "low",
             },
             {
                 active: false,
@@ -82,6 +88,7 @@ const employee = [
                 description: "Fix critical bug in payment API.",
                 date: "2025-04-25",
                 category: "Development",
+                priority: "high",
             },
         ],
     },
@@ -100,6 +107,7 @@ const employee = [
                 description: "Verify all stock items in warehouse.",
                 date: "2025-05-04",
                 category: "Logistics",
+                priority: "medium",
             },
             {
                 active: false,
@@ -110,6 +118,7 @@ const employee = [
                 description: "Coordinate with vendors for deliveries.",
                 date: "2025-04-22",
                 category: "Supply Chain",
+                priority: "low",
             },
         ],
     },
@@ -128,6 +137,7 @@ const employee = [
                 description: "Conduct A/B tests on new features.",
                 date: "2025-05-02",
                 category: "QA",
+                priority: "high",
             },
             {
                 active: false,
@@ -138,6 +148,7 @@ const employee = [
                 description: "Update system with latest compliance standards.",
                 date: "2025-04-18",
                 category: "Legal",
+                priority: "medium",
             },
             {
                 active: false,
@@ -148,6 +159,7 @@ const employee = [
                 description: "Create a full backup of servers.",
                 date: "2025-04-27",
                 category: "IT Operations",
+                priority: "low",
             },
         ],
     },
@@ -166,6 +178,7 @@ const employee = [
                 description: "Write blog post on new product feature.",
                 date: "2025-05-03",
                 category: "Marketing",
+                priority: "medium",
             },
             {
                 active: false,
@@ -176,6 +189,7 @@ const employee = [
                 description: "Design monthly email newsletter.",
                 date: "2025-04-21",
                 category: "Design",
+                priority: "high",
             },
             {
                 active: false,
@@ -186,6 +200,7 @@ const employee = [
                 description: "Analyze performance of last campaign.",
                 date: "2025-04-19",
                 category: "Analytics",
+                priority: "low",
             },
             {
                 active: false,
@@ -196,6 +211,7 @@ const employee = [
                 description: "Plan content for upcoming week.",
                 date: "2025-04-24",
                 category: "Marketing",
+                priority: "medium",
             },
         ],
     },

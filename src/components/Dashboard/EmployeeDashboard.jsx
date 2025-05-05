@@ -4,36 +4,44 @@ import TaskListNumber from "../other/tasklistnumber";
 import TaskList from "../TaskList/TaskList";
 
 const EmployeeDashboard = ({ loggedIn }) => {
+  const { naam, tasks = [] } = loggedIn;
 
-  
+  // Count tasks based on conditions
+  const taskStats = {
+    newTasks: tasks.filter((task) => task.newTask).length,
+    completed: tasks.filter((task) => task.completed).length,
+    accepted: tasks.filter((task) => task.active).length,
+    failed: tasks.filter((task) => task.failed).length,
+  };
+
   return (
     <>
-      <Header username={loggedIn.naam} />
-      
+      <Header username={naam} />
+
       <div className="flex flex-wrap justify-center gap-6 px-6">
         <TaskListNumber
-          count={5}
+          count={taskStats.newTasks}
           label="New Tasks"
           color="from-blue-500 to-indigo-600"
           borderColor="border-blue-300 dark:border-indigo-600"
         />
-        
+
         <TaskListNumber
-          count={2}
+          count={taskStats.completed}
           label="Completed"
           color="from-indigo-500 to-purple-600"
           borderColor="border-indigo-400 dark:border-purple-600"
         />
-        
+
         <TaskListNumber
-          count={8}
+          count={taskStats.accepted}
           label="Accepted"
           color="from-cyan-500 to-blue-600"
           borderColor="border-cyan-400 dark:border-blue-600"
         />
-        
+
         <TaskListNumber
-          count={1}
+          count={taskStats.failed}
           label="Failed"
           color="from-rose-500 to-pink-600"
           borderColor="border-rose-400 dark:border-pink-600"
@@ -41,7 +49,7 @@ const EmployeeDashboard = ({ loggedIn }) => {
       </div>
 
       <div>
-        <TaskList />
+        <TaskList tasks={tasks} />
       </div>
     </>
   );
