@@ -45,13 +45,30 @@ const App = () => {
     }
   }
 
-  console.log(loggedIn);
+  const handleLogout = () => {
+    setUser(null)
+    setLoggedIn(null)
+    setEmpName(null)
+    setAdminName(null)
+    localStorage.clear()
+  }
+
+  useEffect(() => {
+    if (loggedIn) {
+      console.log("Updated loggedIn: ");
+    }
+    else{
+      console.log("Logged out");
+    }
+  }, [loggedIn]);
+
+
 
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ''}
 
-      {user === 'admin' ? <AdminWelcomePage loggedIn={loggedIn}/> : user === 'employee' ? <EmployeeDashboard loggedIn={loggedIn} /> : null}
+      {user === 'admin' ? <AdminWelcomePage loggedIn={loggedIn} handleLogout={handleLogout}/> : user === 'employee' ? <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout}/> : null}
 
 
       {/* <AllTask /> */}

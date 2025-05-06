@@ -3,7 +3,7 @@ import Header from "../other/header";
 import TaskListNumber from "../other/tasklistnumber";
 import TaskList from "../TaskList/TaskList";
 
-const EmployeeDashboard = ({ loggedIn }) => {
+const EmployeeDashboard = ({ loggedIn, handleLogout }) => {
   const { naam, tasks = [] } = loggedIn;
 
   // Count tasks based on conditions
@@ -16,7 +16,7 @@ const EmployeeDashboard = ({ loggedIn }) => {
 
   return (
     <>
-      <Header username={naam} />
+      <Header username={naam} handleLogout={handleLogout}/>
 
       <div className="flex flex-wrap justify-center gap-6 px-6">
         <TaskListNumber

@@ -1,11 +1,11 @@
 import React from "react";
 import AdminHeader from "./AdminHeader";
 
-const AdminWelcomePage = ({ loggedIn }) => {
+const AdminWelcomePage = ({ loggedIn, handleLogout }) => {
   return (
     <>
       {/* Header Section */}
-      <AdminHeader username={loggedIn.naam} />
+      <AdminHeader loggedIn={loggedIn} handleLogout={handleLogout} />
 
       {/* Compact, Centered Welcome Section */}
       <div className="min-h-[80vh] flex items-center justify-center px-4 py-10  text-white">

@@ -219,7 +219,7 @@ const employee = [
         id: 6,
         naam: "Avi Jash",
         email: "avijash@gmail.com",
-        password: "123",
+        password: "avichhavi",
         tasks: [
             {
                 active: false,
@@ -252,6 +252,17 @@ const employee = [
                 description: "To Maintain Sleep - Work cycle",
                 date: "2025-04-19",
                 category: "Sleep",
+                priority: "low",
+            },
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "submit Proposal",
+                description: "Major Project Proposal Submission",
+                date: "2025-05-06",
+                category: "Data Analysis",
                 priority: "low",
             },
         ],
@@ -297,6 +308,61 @@ const employee = [
             },
         ],
     },
+
+    {
+        id: 8,
+        naam: "Aryan Katiyar",
+        email: "aryankatiyar@gmail.com",
+        password: "123456789",
+        tasks: [
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "Apply JSTMs, CNN, GAN on the dataset",
+                description: "Implement JSTMs, CNN, and GAN models on the provided dataset for experimentation.",
+                date: "2025-05-06",
+                category: "Deep Learning",
+                priority: "high",
+            },
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "Apply Linear Regressor",
+                description: "Use linear regression on the dataset and evaluate performance metrics.",
+                date: "2025-05-06",
+                category: "Machine Learning",
+                priority: "medium",
+            },
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "Draw All Pictorial Analysis of the Data",
+                description: "Generate visualizations like histograms, scatter plots, and correlation matrices.",
+                date: "2025-05-06",
+                category: "Data Analysis",
+                priority: "medium",
+            },
+            {
+                active: true,
+                newTask: true,
+                completed: false,
+                failed: false,
+                title: "Submit Proposal",
+                description: "Major Project Proposal Submission",
+                date: "2025-05-06",
+                category: "Data Analysis",
+                priority: "low",
+            },
+        ],
+    }
+
+
 ];
 
 const admin = [
