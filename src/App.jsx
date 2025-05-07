@@ -1,81 +1,47 @@
-import React, { useContext, useEffect } from 'react'
-import Login from './components/Auth/Login'
-import EmployeeDashboard from './components/Dashboard/EmployeeDashboard'
-import AdminDashboard from './components/Dashboard/AdminDashboard'
-import AllTask from './components/other/AllTask'
-import AdminWelcomePage from './components/other/AdminWelcomePage'
-import './App.css'
-import { getLocalStorage, setLocalStorage } from './utils/LocalStorage'
-import { AuthContext } from './context/AuthProvider'
+import React, { useEffect, useState } from "react";
+import Login from "./components/Auth/Login";
+import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
+import AdminDashboard from "./components/Dashboard/AdminDashboard";
+import LandingPage from "./components/other/Home";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 const App = () => {
-
-  // useEffect(() => {
-  //   // setLocalStorage()
-  //   getLocalStorage()
-  // }, [])
-
-  const [user, setUser] = React.useState(null)
-  const [empName, setEmpName] = React.useState()
-  const [adminName, setAdminName] = React.useState()
-  const [loggedIn, setLoggedIn] = React.useState(null)
-  
-  const AuthData = useContext(AuthContext)
-
-  useEffect(() => {
-    setLocalStorage()
-  }, [])
-
-  const handleLogin = (email, password) => {
-    if (AuthData && AuthData.admin.find((user) => user.email === email && user.password === password))
-    {
-      const admin = AuthData.admin.find((user) => user.email === email && user.password === password)
-      console.log(admin.naam); // This works reliably
-      setAdminName(admin.naam)
-      setUser('admin')
-      setLoggedIn(admin)
-    } else if (AuthData && AuthData.employee.find((user) => user.email === email && user.password === password)) {
-      const employee = AuthData.employee.find((user) => user.email === email && user.password === password)
-      setUser('employee')
-      setEmpName(employee.naam)
-      setLoggedIn(employee)
-    }
-    else {
-      alert('Invalid credentials')
-    }
-  }
+  const [loggedIn, setLoggedIn] = useState(null); // Will store user data
 
   const handleLogout = () => {
-    setUser(null)
-    setLoggedIn(null)
-    setEmpName(null)
-    setAdminName(null)
-    localStorage.clear()
-  }
+    setLoggedIn(null);
+  };
 
   useEffect(() => {
     if (loggedIn) {
-      console.log("Updated loggedIn: ");
-    }
-    else{
-      console.log("Logged out");
+      console.log("User logged in:", loggedIn);
+    } else {
+      console.log("User logged out.");
     }
   }, [loggedIn]);
 
-
-
   return (
-    <>
-      {!user ? <Login handleLogin={handleLogin} /> : ''}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+        <Route
+          path="/dashboard"
+          element={
+            loggedIn ? (
+              loggedIn.user === "admin" ? (
+                <AdminDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
+              ) : (
+                <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
+              )
+            ) : (
+              <Login setLoggedIn={setLoggedIn} />
+            )
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-      {user === 'admin' ? <AdminWelcomePage loggedIn={loggedIn} handleLogout={handleLogout}/> : user === 'employee' ? <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout}/> : null}
-
-
-      {/* <AllTask /> */}
-
-      {/* <AdminWelcomePage/> */}
-    </>
-  )
-}
-
-export default App
+export default App;

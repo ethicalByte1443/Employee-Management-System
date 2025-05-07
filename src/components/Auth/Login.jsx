@@ -1,21 +1,41 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const submithandler = (e) => {
+  const submithandler = async (e) => {
     e.preventDefault();
-    handleLogin(email, password);
-    console.log(email, password);
-    console.log("Submit handler called");
+    try {
+      const response = await axios.post("https://021f-2402-3a80-1f4f-bd0c-81db-60d5-8d46-8477.ngrok-free.app/", {
+        email,
+        password,
+      });
+
+
+      
+
+
+      if (!response.data.success) {
+        setError(response.data.message || "Invalid credentials.");
+      } else {
+        setLoggedIn(response.data.employee); // Assuming `user` contains name, type etc.
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 background-radial-gradient overflow-hidden relative">
-      {/* Decorative Radial Shapes */}
+    <div className="min-h-screen flex items-center justify-center background-radial-gradient overflow-hidden relative">
+      {/* Radial background shapes */}
       <div
-        id="radius-shape-1"
         className="absolute rounded-full shadow-2xl"
         style={{
           height: "220px",
@@ -23,11 +43,9 @@ const Login = ({ handleLogin }) => {
           top: "-60px",
           left: "-130px",
           background: "radial-gradient(#44006b, #ad1fff)",
-          overflow: "hidden",
         }}
-      ></div>
+      />
       <div
-        id="radius-shape-2"
         className="absolute shadow-2xl"
         style={{
           borderRadius: "38% 62% 63% 37% / 70% 33% 67% 30%",
@@ -36,13 +54,10 @@ const Login = ({ handleLogin }) => {
           width: "300px",
           height: "300px",
           background: "radial-gradient(#44006b, #ad1fff)",
-          overflow: "hidden",
         }}
-      ></div>
+      />
 
-      {/* Login Card */}
       <div className="w-full max-w-4xl bg-glass rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden z-10">
-        {/* Left Illustration */}
         <div className="hidden md:block w-1/2 bg-indigo-100 dark:bg-gray-700">
           <img
             src="undraw_global-team_8jok (1).png"
@@ -51,12 +66,14 @@ const Login = ({ handleLogin }) => {
           />
         </div>
 
-        {/* Right Form */}
         <div className="w-full md:w-1/2 p-6 md:p-8 bg-white dark:bg-gray-800">
           <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">
             Welcome Back 👋
           </h2>
           <form onSubmit={submithandler} className="space-y-4">
+            {error && (
+              <p className="text-red-500 text-sm text-center">{error}</p>
+            )}
             <div>
               <label
                 htmlFor="email"
@@ -70,7 +87,7 @@ const Login = ({ handleLogin }) => {
                 id="email"
                 type="email"
                 autoComplete="username"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="you@example.com"
                 required
               />
@@ -88,7 +105,7 @@ const Login = ({ handleLogin }) => {
                 id="password"
                 type="password"
                 autoComplete="current-password"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="••••••••"
                 required
               />
@@ -103,7 +120,6 @@ const Login = ({ handleLogin }) => {
         </div>
       </div>
 
-      {/* Styles for background and glass effect */}
       <style jsx>{`
         .background-radial-gradient {
           background-color: hsl(218, 41%, 15%);
