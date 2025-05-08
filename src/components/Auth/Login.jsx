@@ -11,13 +11,10 @@ const Login = ({ setLoggedIn }) => {
   const submithandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://021f-2402-3a80-1f4f-bd0c-81db-60d5-8d46-8477.ngrok-free.app/", {
+       const response = await axios.post("http://localhost:3000/login", {
         email,
         password,
       });
-
-
-      
 
 
       if (!response.data.success) {
