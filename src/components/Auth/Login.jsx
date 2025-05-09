@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Login = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -11,16 +12,15 @@ const Login = ({ setLoggedIn }) => {
   const submithandler = async (e) => {
     e.preventDefault();
     try {
-       const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("http://localhost:3000/login", {
         email,
         password,
       });
 
-
       if (!response.data.success) {
         setError(response.data.message || "Invalid credentials.");
       } else {
-        setLoggedIn(response.data.employee); // Assuming `user` contains name, type etc.
+        setLoggedIn(response.data.employee);
         navigate("/dashboard");
       }
     } catch (err) {
@@ -54,16 +54,34 @@ const Login = ({ setLoggedIn }) => {
         }}
       />
 
-      <div className="w-full max-w-4xl bg-glass rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden z-10">
-        <div className="hidden md:block w-1/2 bg-indigo-100 dark:bg-gray-700">
+      {/* Animated login card */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full max-w-4xl bg-glass rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden z-10"
+      >
+        {/* Left Illustration with animation */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="hidden md:block w-1/2 bg-indigo-100 dark:bg-gray-700"
+        >
           <img
             src="undraw_global-team_8jok (1).png"
             alt="Login Illustration"
             className="w-full h-full object-cover"
           />
-        </div>
+        </motion.div>
 
-        <div className="w-full md:w-1/2 p-6 md:p-8 bg-white dark:bg-gray-800">
+        {/* Right form panel with animation */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="w-full md:w-1/2 p-6 md:p-8 bg-white dark:bg-gray-800"
+        >
           <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">
             Welcome Back 👋
           </h2>
@@ -114,8 +132,8 @@ const Login = ({ setLoggedIn }) => {
               Sign In
             </button>
           </form>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <style jsx>{`
         .background-radial-gradient {
