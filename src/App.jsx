@@ -29,7 +29,7 @@ const App = () => {
           path="/dashboard"
           element={
             loggedIn ? (
-              loggedIn.user === "admin" ? (
+              loggedIn.type === "admin" ? (
                 <AdminDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
               ) : (
                 <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
