@@ -1,12 +1,50 @@
-# React + Vite
+# 🚀 Employee Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and interactive **Employee Management System** built using **React + Vite**, designed to streamline employee task tracking, status updates, and seamless task assignment via a powerful backend.
 
-Currently, two official plugins are available:
+## 📌 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 👤 Employee authentication (Login by Email & Password)
+- 📋 Task assignment by admin (via name & email)
+- 📊 Real-time status tracking:
+  - New
+  - Accepted
+  - Completed
+  - Failed
+- ⚡ Fast UI updates with Vite + React
+- 🎨 Styled using Tailwind CSS & Framer Motion
+- 🔄 Smooth task status updates with Axios & Express API
+- 🌗 Light/Dark Mode ready (Tailwind utilities)
+- 🔐 Secure API integrations (Mongoose + MongoDB + Express)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+| Tech           | Usage                              |
+|----------------|------------------------------------|
+| ⚛️ React       | Frontend UI                        |
+| ⚡ Vite         | Frontend bundler with HMR          |
+| 🌬 TailwindCSS | Responsive and utility-first styles|
+| 🧠 Framer Motion | Animations                        |
+| 🔗 Axios        | HTTP Requests                      |
+| 🌐 Express.js   | Backend API                        |
+| 🛢 MongoDB + Mongoose | Database & ORM              |
+| 🌿 dotenv       | Environment variable management    |
+| 🚦 React Router | Routing and navigation             |
+
+---
+
+## 🧑‍💻 Getting Started
+
+### ⚙️ Prerequisites
+
+- Node.js ≥ 18
+- MongoDB running locally or on Atlas
+
+### 📦 Installation
+
+```bash
+git clone https://github.com/yourusername/employee-management-system.git
+cd employee-management-system
+npm install
