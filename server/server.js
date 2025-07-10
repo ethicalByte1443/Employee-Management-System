@@ -15,7 +15,9 @@ mongoose.connect('mongodb://localhost:27017/EMA', {
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB connection error:", err));
 
-// Login route
+// ====================== USER AUTH + MANAGEMENT =======================
+
+// 🔐 Login route
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -37,10 +39,44 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// ✅ Get all employee names (for dropdown)
+// 👤 Add new employee (form submission)
+app.post('/api/employees', async (req, res) => {
+    try {
+        const { naam, email, password } = req.body;
+
+        if (!naam || !email || !password) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
+        const existing = await Employee.findOne({ email });
+        if (existing) {
+            return res.status(409).json({ error: 'Email already registered' });
+        }
+
+        const newEmployee = new Employee({
+            naam,
+            email,
+            password,
+            tasks: [] // 🆕 Empty task list
+        });
+
+        await newEmployee.save();
+        return res.status(201).json({
+            message: 'Employee added successfully',
+            employeeId: newEmployee._id,
+        });
+    } catch (err) {
+        console.error("Add Employee Error:", err);
+        return res.status(500).json({ error: "Server error while adding employee" });
+    }
+});
+
+// ======================== EMPLOYEE TASK ROUTES ========================
+
+// 📋 Get all employee names
 app.get('/employees', async (req, res) => {
     try {
-        const employees = await Employee.find({}, 'naam'); // fetch only names
+        const employees = await Employee.find({}, 'naam');
         res.json(employees);
     } catch (err) {
         console.error("Fetch Employees Error:", err);
@@ -48,7 +84,7 @@ app.get('/employees', async (req, res) => {
     }
 });
 
-// ✅ Add task to employee
+// 📝 Assign task by name
 app.post('/assign-task', async (req, res) => {
     const { employeeName, title, description, date, category, priority } = req.body;
 
@@ -81,7 +117,7 @@ app.post('/assign-task', async (req, res) => {
     }
 });
 
-
+// 📝 Assign task by ID
 app.post('/api/employees/:id/tasks', async (req, res) => {
     const employeeId = req.params.id;
     const { title, description, date, category, priority } = req.body;
@@ -114,7 +150,7 @@ app.post('/api/employees/:id/tasks', async (req, res) => {
     }
 });
 
-
+// ✅ Update task status
 app.put('/api/employees/update-task-status', async (req, res) => {
     const { email, naam, index, status } = req.body;
 
@@ -125,22 +161,17 @@ app.put('/api/employees/update-task-status', async (req, res) => {
             return res.status(404).json({ success: false, message: "Task or employee not found" });
         }
 
-        // Reset all status fields
+        // Update task status
         const task = employee.tasks[index];
         task.newTask = false;
         task.completed = false;
         task.active = false;
         task.failed = false;
 
-        if (status === 'completed') {
-            task.completed = true;
-        } else if (status === 'accepted') {
-            task.active = true;
-        } else if (status === 'failed') {
-            task.failed = true;
-        } else {
-            task.newTask = true;
-        }
+        if (status === 'completed') task.completed = true;
+        else if (status === 'accepted') task.active = true;
+        else if (status === 'failed') task.failed = true;
+        else task.newTask = true;
 
         await employee.save();
 
@@ -151,8 +182,7 @@ app.put('/api/employees/update-task-status', async (req, res) => {
     }
 });
 
-// Start server
+// ======================== START SERVER ========================
 app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+    console.log("🚀 Server is running on port 3000");
 });
-
