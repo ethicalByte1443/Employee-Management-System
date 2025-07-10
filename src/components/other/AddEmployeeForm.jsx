@@ -50,7 +50,6 @@ const AddEmployeeForm = ({ handleLogout }) => {
 
   return (
     <div className="min-h-screen flex flex-col background-radial-gradient overflow-hidden relative text-white">
-      <Header username="Admin" handleLogout={handleLogout} />
 
       <div className="flex justify-center mt-16 px-4 z-10 animate-fade-in">
         <form
