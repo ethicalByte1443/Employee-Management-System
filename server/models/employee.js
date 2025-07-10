@@ -19,7 +19,8 @@ const employeeSchema = new Schema({
     naam: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    tasks: [taskSchema]
+    tasks: [taskSchema],
+    type: { type: String, enum: ['admin', 'employee'], default: 'employee' } // Added type field
 }, { timestamps: true });
 
 // Employee Model

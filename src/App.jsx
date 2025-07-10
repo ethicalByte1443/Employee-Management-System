@@ -23,28 +23,29 @@ const App = () => {
   }, [loggedIn]);
 
   return (
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/" element={<LandingPage />} />
-    //     <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-    //     <Route
-    //       path="/dashboard"
-    //       element={
-    //         loggedIn ? (
-    //           loggedIn.type === "admin" ? (
-    //             <AdminDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
-    //           ) : (
-    //             <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
-    //           )
-    //         ) : (
-    //           <Login setLoggedIn={setLoggedIn} />
-    //         )
-    //       }
-    //     />
-    //   </Routes>
-    // </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+        <Route
+          path="/dashboard"
+          element={
+            loggedIn ? (
+              loggedIn.type === "admin" ? (
+                <AdminDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
+              ) : (
+                <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
+              )
+            ) : (
+              <Login setLoggedIn={setLoggedIn} />
+            )
+          }
+        />
+      </Routes>
+    </BrowserRouter>
 
-    <AddEmployeeForm/>
+    // <AddEmployeeForm/>
+    // <AdminDashboard loggedIn={true}/>
   );
 };
 

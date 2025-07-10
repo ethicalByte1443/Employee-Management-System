@@ -6,6 +6,7 @@ const AddEmployeeForm = ({ handleLogout }) => {
     naam: "",
     email: "",
     password: "",
+    type: "employee",
   });
 
   const [message, setMessage] = useState("");

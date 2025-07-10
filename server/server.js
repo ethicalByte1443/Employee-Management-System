@@ -42,9 +42,9 @@ app.post('/login', async (req, res) => {
 // 👤 Add new employee (form submission)
 app.post('/api/employees', async (req, res) => {
     try {
-        const { naam, email, password } = req.body;
+        const { naam, email, password, type } = req.body;
 
-        if (!naam || !email || !password) {
+        if (!naam || !email || !password || !type) {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
@@ -57,7 +57,8 @@ app.post('/api/employees', async (req, res) => {
             naam,
             email,
             password,
-            tasks: [] // 🆕 Empty task list
+            tasks: [], // 🆕 Empty task list
+            type // Employee type (admin/employee)
         });
 
         await newEmployee.save();
@@ -75,13 +76,13 @@ app.post('/api/employees', async (req, res) => {
 
 // 📋 Get all employee names
 app.get('/employees', async (req, res) => {
-    try {
-        const employees = await Employee.find({}, 'naam');
-        res.json(employees);
-    } catch (err) {
-        console.error("Fetch Employees Error:", err);
-        res.status(500).json({ message: "Failed to fetch employees" });
-    }
+  try {
+    const employees = await Employee.find({ type: 'employee' }, 'naam _id');
+    res.json(employees);
+  } catch (err) {
+    console.error("Fetch Employees Error:", err);
+    res.status(500).json({ message: "Failed to fetch employees" });
+  }
 });
 
 // 📝 Assign task by name
