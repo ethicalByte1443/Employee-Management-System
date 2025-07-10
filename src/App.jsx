@@ -4,6 +4,8 @@ import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import LandingPage from "./components/other/Home";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import AddEmployeeForm from "./components/other/AddEmployeeForm";
+
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(null); // Will store user data
@@ -21,26 +23,28 @@ const App = () => {
   }, [loggedIn]);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-        <Route
-          path="/dashboard"
-          element={
-            loggedIn ? (
-              loggedIn.type === "admin" ? (
-                <AdminDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
-              ) : (
-                <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
-              )
-            ) : (
-              <Login setLoggedIn={setLoggedIn} />
-            )
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<LandingPage />} />
+    //     <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+    //     <Route
+    //       path="/dashboard"
+    //       element={
+    //         loggedIn ? (
+    //           loggedIn.type === "admin" ? (
+    //             <AdminDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
+    //           ) : (
+    //             <EmployeeDashboard loggedIn={loggedIn} handleLogout={handleLogout} />
+    //           )
+    //         ) : (
+    //           <Login setLoggedIn={setLoggedIn} />
+    //         )
+    //       }
+    //     />
+    //   </Routes>
+    // </BrowserRouter>
+
+    <AddEmployeeForm/>
   );
 };
 
